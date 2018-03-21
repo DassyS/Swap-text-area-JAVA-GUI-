@@ -55,11 +55,13 @@ public class Swap extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			String x;
+			String y;
 			x = msg1.getText();
+			y= msg2.getText();
 			if ((x.equals(null)) || ((x.equals(" ")))) {
 				JOptionPane.showMessageDialog(null, "Please enter text");
 			} else {
-				msg1.setText("");
+				msg1.setText(y);
 				msg2.setText(x);
 			}// end else
 		}
