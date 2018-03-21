@@ -1,0 +1,66 @@
+package javaGUI;
+
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class Swap extends JFrame {
+	private static final long serialVersionUID = 1L;
+	private static final int WIDTH = 800;
+	private static final int HEIGHT = 300;
+	private JTextArea msg1; // user entry
+	private JTextArea msg2; // generated text
+	GridBagConstraints gbc = new GridBagConstraints();
+
+	public Swap() {
+		setTitle("Swapping TextAreas");
+		setSize(WIDTH, HEIGHT);
+		setLayout(new GridBagLayout());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		createContents();
+		setVisible(true);
+	}
+
+	private void createContents() {
+		JButton btn = new JButton("Swap 'em!");
+		Listener listener = new Listener();
+
+		msg1 = new JTextArea(6,25);
+		msg2 = new JTextArea(6,25);
+		gbc.gridx=0;
+		gbc.gridy=0;
+		gbc.insets=new Insets(15,15,40,40);
+		gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+		add(msg1,gbc);
+		gbc.gridx=4;
+		gbc.gridy=0;
+		gbc.gridy = 0;gbc.insets=new Insets(15,40,40,15);
+		gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+		add(msg2,gbc);
+		gbc.gridx=0;
+		gbc.gridy=5;
+		gbc.gridwidth = 8;
+		gbc.fill  = GridBagConstraints.HORIZONTAL;
+		gbc.gridheight = 6;
+		gbc.fill  = GridBagConstraints.VERTICAL;
+		gbc.insets=new Insets(15,15,15,15);
+		gbc.anchor = GridBagConstraints.PAGE_END;
+		add(btn,gbc);
+		pack();
+		btn.addActionListener(listener);
+	}
+
+	private class Listener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			String x;
+			x = msg1.getText();
+			if ((x.equals(null)) || ((x.equals(" ")))) {
+				JOptionPane.showMessageDialog(null, "Please enter text");
+			} else {
+				msg1.setText("");
+				msg2.setText(x);
+			}// end else
+		}
+	}// end of listener class
